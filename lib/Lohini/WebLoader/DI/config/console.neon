@@ -1,0 +1,5 @@
+services:
+	clearCache:
+		class: Lohini\WebLoader\Console\ClearCommand()
+		tags: [lohini.console.command]
+		autowired: no

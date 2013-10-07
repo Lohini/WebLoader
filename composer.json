@@ -1,0 +1,34 @@
+{
+	"name": "lohini/webloader",
+	"type": "library",
+	"description": "WebLoader",
+	"keywords": ["webloader", "css", "javascript", "assests", "nette"],
+	"homepage": "http://github.com/Lohini/WebLoader",
+	"license": ["MIT", "GPL-3.0"],
+	"authors": [
+		{
+			"name": "Pavol Hluchy",
+			"homepage": "http://lopo.losys.eu"
+		},
+		{
+			"name": "Jan Marek",
+			"email": "mail@janmarek.net"
+		}
+	],
+	"require": {
+		"php": ">=5.4.0",
+		"nette/nette": "@dev"
+	},
+	"suggest": {
+		"kdyby/redis": "for better caching",
+		"lopo/phpsass": "Allows limited Sass support"
+	},
+	"autoload": {
+		"psr-0": {
+			"Lohini\\WebLoader": "lib"
+		},
+		"classmap": [
+			"lib/Lohini/WebLoader/WebLoaderPresenter.php"
+		]
+	}
+}
