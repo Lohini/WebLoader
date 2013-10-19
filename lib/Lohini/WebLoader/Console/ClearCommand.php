@@ -38,7 +38,7 @@ extends \Symfony\Component\Console\Command\Command
 	/**
 	 * {@inheritdoc}
 	 */
-	protected function initialize(InputInterface $input, OutpuInterface $output)
+	protected function initialize(InputInterface $input, OutputInterface $output)
 	{
 		$this->serviceLocator=$this->getHelper('container')->getContainer();
 	}
