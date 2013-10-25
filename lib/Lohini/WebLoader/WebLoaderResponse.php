@@ -72,6 +72,7 @@ implements \Nette\Application\IResponse
 		$httpResponse->setExpiration(\Nette\Http\IResponse::PERMANENT);
 		if (($inm=$httpRequest->getHeader('if-none-match')) && $inm==$this->etag) {
 			$httpResponse->setCode(\Nette\Http\IResponse::S304_NOT_MODIFIED);
+			return;
 			}
 		$httpResponse->setContentType($this->contentType);
 		echo $this->content;
