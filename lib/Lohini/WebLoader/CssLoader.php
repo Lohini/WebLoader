@@ -117,7 +117,6 @@ extends WebLoader
 		foreach ($this->files as $f) {
 			$filesByMedia[$f[1]][]=$f[0];
 			}
-		$url=$ctx->httpRequest->url;
 		foreach ($filesByMedia as $media => $filenames) {
 			if ($this->joinFiles) {
 				echo $this->getElement($this->getPresenter()->link(':Lohini:WebLoader:', $this->generate($filenames)), $media);

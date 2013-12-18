@@ -65,7 +65,7 @@ extends \Nette\Application\UI\Control
 	public function __construct(\Nette\ComponentModel\IContainer $parent=NULL, $name=NULL)
 	{
 		parent::__construct($parent, $name);
-		$this->baseUrl=$this->getPresenter(FALSE)->context->httpRequest->getUrl()->getBaseUrl();
+		$this->baseUrl=$this->getPresenter(FALSE)->context->getService('httpRequest')->getUrl()->getBaseUrl();
 	}
 
 	/**
