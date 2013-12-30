@@ -48,6 +48,11 @@ extends \Nette\DI\CompilerExtension
 				->setClass('Lohini\WebLoader\Caching\Cache', ['@cacheStorage', 'Lohini.WebLoader'])
 				->setInject(FALSE)
 				;
+
+		if ($builder->hasDefinition('nette.latte')) {
+			$builder->getDefinition('nette.latte')
+				->addSetup('Lohini\WebLoader\Macros\UIMacros::factory', ['@self']);
+			}
 	}
 
 	/**
@@ -73,7 +78,7 @@ extends \Nette\DI\CompilerExtension
 	{
 		$this->compiler->parseServices(
 			$this->getContainerBuilder(),
-			$this->loadFromFile(__DIR__.'/config/'.$name.'.neon'),
+			$this->loadFromFile(__DIR__."/config/$name.neon"),
 			$this->prefix($name)
 			);
 	}
