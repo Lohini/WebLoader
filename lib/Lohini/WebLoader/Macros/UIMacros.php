@@ -7,9 +7,8 @@
  */
 namespace Lohini\WebLoader\Macros;
 
-use Nette\Latte,
-	Nette\Utils\Strings,
-	Nette\Latte\CompileException;
+use Nette\Utils\Strings,
+	Latte\CompileException;
 
 /**
  * /--code latte
@@ -22,22 +21,22 @@ use Nette\Latte,
  * @author Lopo <lopo@lohini.net>
  */
 class UIMacros
-extends Latte\Macros\MacroSet
+extends \Latte\Macros\MacroSet
 {
 	/**
-	 * @param Latte\Engine
-	 * @return Latte\Macros\MacroSet
+	 * @param \Latte\Engine
+	 * @return \Latte\Macros\MacroSet
 	 */
-	public static function factory(Latte\Engine $engine)
+	public static function factory(\Latte\Engine $engine)
 	{
 		return static::install($engine->getCompiler());
 	}
 
 	/**
-	 * @param Latte\Compiler $compiler
+	 * @param \Latte\Compiler $compiler
 	 * @return UIMacros
 	 */
-	public static function install(Latte\Compiler $compiler)
+	public static function install(\Latte\Compiler $compiler)
 	{
 		$set=new static($compiler);
 		$set->addMacro('css', [$set, 'macroCss']);
@@ -48,12 +47,12 @@ extends Latte\Macros\MacroSet
 	/**
 	 * {css [:renderType] file[=>media][, file2[=>media]]}
 	 *
-	 * @param Latte\MacroNode $node
-	 * @param Latte\PhpWriter $writer
+	 * @param \Latte\MacroNode $node
+	 * @param \Latte\PhpWriter $writer
 	 * @return string
 	 * @throws CompileException
 	 */
-	public function macroCss(Latte\MacroNode $node, Latte\PhpWriter $writer)
+	public function macroCss(\Latte\MacroNode $node, \Latte\PhpWriter $writer)
 	{
 		$words=$node->tokenizer->fetchWords();
 		if (!$words) {
@@ -75,12 +74,12 @@ extends Latte\Macros\MacroSet
 	/**
 	 * {js [:renderType] file[, file2]}
 	 *
-	 * @param Latte\MacroNode $node
-	 * @param Latte\PhpWriter $writer
+	 * @param \Latte\MacroNode $node
+	 * @param \Latte\PhpWriter $writer
 	 * @return string
 	 * @throws CompileException
 	 */
-	public function macroJs(Latte\MacroNode $node, Latte\PhpWriter $writer)
+	public function macroJs(\Latte\MacroNode $node, \Latte\PhpWriter $writer)
 	{
 		$words=$node->tokenizer->fetchWords();
 		if (!$words) {

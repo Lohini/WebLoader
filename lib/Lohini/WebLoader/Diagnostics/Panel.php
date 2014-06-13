@@ -19,7 +19,7 @@ implements \Nette\Diagnostics\IBarPanel
 
 	public static function register()
 	{
-		\Nette\Diagnostics\Debugger::addPanel(new self());
+		\Tracy\Debugger::addPanel(new self());
 	}
 
 	public static function addFile($source, $generated, $memory=NULL)

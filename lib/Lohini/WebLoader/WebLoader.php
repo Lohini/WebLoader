@@ -369,7 +369,7 @@ extends \Nette\Application\UI\Control
 					throw new \Nette\FileNotFoundException("File '$this->sourcePath/$file' doesn't exist.");
 					}
 				else {
-					\Nette\Diagnostics\Debugger::processException(new \Nette\FileNotFoundException("File '$this->sourcePath/$file' doesn't exist."));
+					\Tracy\Debugger::processException(new \Nette\FileNotFoundException("File '$this->sourcePath/$file' doesn't exist."));
 					return '';
 					}
 				}

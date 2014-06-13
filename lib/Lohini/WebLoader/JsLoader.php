@@ -9,7 +9,7 @@ namespace Lohini\WebLoader;
 
 use Nette\Utils\Html,
 	Nette\Utils\Strings,
-	Nette\Diagnostics\Debugger;
+	Tracy\Debugger;
 
 /**
  * JsLoader

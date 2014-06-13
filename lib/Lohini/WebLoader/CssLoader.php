@@ -8,7 +8,7 @@
 namespace Lohini\WebLoader;
 
 use Nette\Utils\Html,
-	Nette\Diagnostics\Debugger;
+	Tracy\Debugger;
 
 /**
  * CssLoader

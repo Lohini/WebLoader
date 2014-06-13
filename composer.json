@@ -17,7 +17,10 @@
 	],
 	"require": {
 		"php": ">=5.4.0",
-		"nette/nette": "@dev"
+		"nette/nette": "~2.2@dev"
+	},
+	"require-dev": {
+		"nette/tester": "@dev"
 	},
 	"suggest": {
 		"kdyby/redis": "for better caching",
