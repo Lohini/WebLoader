@@ -7,7 +7,7 @@
  */
 namespace Lohini\WebLoader;
 
-use Nette\Application\Request;
+use Nette\Application;
 
 /**
  * @author Lopo <lopo@lohini.net>
@@ -20,32 +20,39 @@ extends \Nette\Application\Routers\Route
 
 
 	/**
-	 * Constructs absolute URL from Request object.
+	 * Constructs absolute URL from Request object
+	 *
+	 * @param \Nette\Application\Request $appRequest
+	 * @param \Nette\Http\Url $refUrl
+	 * @return string|NULL
 	 */
-	public function constructUrl(Request $appRequest, \Nette\Http\Url $refUrl)
+	public function constructUrl(Application\Request $appRequest, \Nette\Http\Url $refUrl)
 	{
 		if ($appRequest->getPresenterName()!=$this->getTargetPresenter()) {
 			return NULL;
 			}
 		$params=$appRequest->getParameters();
-		return self::$path.(isset($params['id'])? $params['id'] : $params[0]);
+		if (!isset($params['id']) && isset($params[0])) {
+			$params['id']=$params[0];
+			unset($params[0]);
+			$appRequest->setParameters($params);
+			}
+		return parent::constructUrl($appRequest, $refUrl);
 	}
 
 	/**
 	 * @param \Nette\Application\IRouter $router
-	 * @param \Nette\DI\Container $container
-	 * @param string $path
-	 * @return \Nette\Application\Routers\RouteList
+	 * @param WebLoaderRoute $wlRouter
+	 * @throws \Nette\Utils\AssertionException
 	 */
-	public static function prependTo(\Nette\Application\IRouter &$router, self $wlRouter, $path)
+	public static function prependTo(Application\IRouter &$router, self $wlRouter)
 	{
-		if (!$router instanceof \Nette\Application\Routers\RouteList) {
+		if (!$router instanceof Application\Routers\RouteList) {
 			throw new \Nette\Utils\AssertionException(
 				'If you want to use Lohini/WebLoader then your main router '
 				.'must be an instance of Nette\Application\Routers\RouteList'
 				);
 			}
-		self::$path=$path;
 		$router[]=$wlRouter;
 		$lastKey=count($router)-1;
 		foreach ($router as $i => $route) {

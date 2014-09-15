@@ -37,7 +37,7 @@ extends \Nette\DI\CompilerExtension
 				->setAutowired(FALSE)
 				->setInject(FALSE);
 		$builder->getDefinition('router')
-				->addSetup('Lohini\WebLoader\WebLoaderRoute::prependTo($service, ?, ?)', [$this->prefix('@route'), $config['basePath']]);
+				->addSetup('Lohini\WebLoader\WebLoaderRoute::prependTo($service, ?)', [$this->prefix('@route')]);
 		$builder->getDefinition('nette.presenterFactory')
 				->addSetup('if (method_exists($service, ?)) { $service->setMapping([? => ?]); } '
 						.'elseif (property_exists($service, ?)) { $service->mapping[?] = ?; }',
